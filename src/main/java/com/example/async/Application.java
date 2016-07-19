@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.util.concurrent.Future;
 
-@SpringBootApplication
 @EnableAsync
+@EnableRetry
+@SpringBootApplication
 public class Application implements CommandLineRunner{
 
     @Autowired
@@ -19,7 +21,7 @@ public class Application implements CommandLineRunner{
     public void run(String... args) throws Exception {
 
         Future<User> page1 = githubLookupService.findUser("PivotalSoftware");
-        Future<User> page2 = githubLookupService.findUser("DiUS");
+        Future<User> page2 = githubLookupService.findUser("asdfasfaasdfasdf");
 
         System.out.println(page1.get());
         System.out.println(page2.get());
@@ -29,3 +31,4 @@ public class Application implements CommandLineRunner{
         SpringApplication.run(Application.class, args);
     }
 }
+
