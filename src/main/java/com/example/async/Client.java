@@ -7,7 +7,7 @@ import org.springframework.web.client.HttpClientErrorException;
 interface Client {
 
     @Retryable(value = HttpClientErrorException.class, maxAttempts = 3)
-    User getUser(String user);
+    User getUser(String user) throws InterruptedException;
 
     @Recover
     User recover(HttpClientErrorException exception);
