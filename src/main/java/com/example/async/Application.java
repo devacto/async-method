@@ -21,7 +21,7 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Future<User> page1 = githubLookupService.findUser("PivotalSoftware");
-        Future<User> page2 = githubLookupService.findUser("asdfasfaasdfasdf");
+        Future<User> page2 = githubLookupService.findUser("asdfasfaasdfasd");
 
         System.out.println(page1.get());
         System.out.println(page2.get());
