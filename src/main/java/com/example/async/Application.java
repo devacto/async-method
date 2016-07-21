@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 @EnableAsync
 @EnableRetry
 @SpringBootApplication
-public class Application implements CommandLineRunner{
+public class Application implements CommandLineRunner {
 
     @Autowired
     GithubLookupService githubLookupService;

@@ -11,11 +11,11 @@ import java.util.concurrent.Future;
 public class GithubLookupService {
 
     @Autowired
-    GithubClient githubClient;
+    Client githubClient;
 
     @Async
     public Future<User> findUser(String user) throws InterruptedException {
-        User results = githubClient.getForObject(user);
+        User results = githubClient.getUser(user);
         return new AsyncResult<>(results);
     }
 

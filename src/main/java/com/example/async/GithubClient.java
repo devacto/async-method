@@ -1,14 +1,21 @@
 package com.example.async;
 
-import org.springframework.retry.annotation.Recover;
-import org.springframework.retry.annotation.Retryable;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
-interface GithubClient {
+@Service
+public class GithubClient implements Client {
 
-    @Retryable(value = HttpClientErrorException.class, maxAttempts = 3)
-    User getForObject(String user);
+    public User getUser(String user) {
+        System.out.printf("Looking up %s\n", user);
 
-    @Recover
-    User recover(HttpClientErrorException exception);
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject("https://api.github.com/users/" + user, User.class);
+    }
+
+    public User recover(HttpClientErrorException exception) {
+        System.out.printf("Recovering: %s\n", exception.getMessage());
+        return null;
+    }
 }
